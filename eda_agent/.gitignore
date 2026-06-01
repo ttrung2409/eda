@@ -1,0 +1,5 @@
+node_modules
+eda_agent
+docs
+__pycache__
+.env

@@ -1,0 +1,23 @@
+{
+  "name": "eda-mastra",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "server": "node --env-file=.env --import tsx/esm src/server.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "@mastra/core": "^1.36.0",
+    "@mastra/libsql": "^1.11.1",
+    "@types/ws": "^8.18.1",
+    "ollama": "^0.6.0",
+    "ws": "^8.21.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
