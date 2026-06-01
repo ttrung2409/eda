@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/cli.ts",
-    "server": "node --env-file=.env --import tsx/esm src/server.ts"
+    "server": "node --env-file=.env --import tsx/esm src/server.ts",
+    "postinstall": "pip install -r requirements.txt"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",

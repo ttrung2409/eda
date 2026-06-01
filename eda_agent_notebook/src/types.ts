@@ -6,7 +6,7 @@ export type ClientMessage =
   | { type: "init"; filePath: string }
   | { type: "query"; text: string; history?: HistoryMessage[]; isFollowUp?: boolean }
   | { type: "clarifyAnswer"; answer: string }
-  | { type: "suggest"; persona?: string }
+  | { type: "suggest"; persona?: string; existingGoals?: string[] }
   | { type: "suggestPick"; index: number };
 
 // ── Messages sent from eda_agent server to the notebook frontend ──────────────

@@ -1,0 +1,6 @@
+pandas
+lida
+matplotlib
+mpld3
+google-generativeai
+ollama

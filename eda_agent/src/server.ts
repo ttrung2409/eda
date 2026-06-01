@@ -117,11 +117,24 @@ class Session {
     const { filePath } = msg;
     this.filePath = path.resolve(filePath);
 
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) throw new Error("GEMINI_API_KEY environment variable is not set");
+    const provider = process.env.LLM_PROVIDER?.toLowerCase();
+    if (!provider) throw new Error("LLM_PROVIDER environment variable is not set");
+    let initParams: Record<string, string>;
+
+    if (provider === "ollama") {
+      const model = process.env.OLLAMA_MODEL;
+      if (!model) throw new Error("OLLAMA_MODEL environment variable is not set");
+      initParams = { provider: "ollama", model };
+    } else {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) throw new Error("GEMINI_API_KEY environment variable is not set");
+      const model = process.env.GEMINI_MODEL;
+      if (!model) throw new Error("GEMINI_MODEL environment variable is not set");
+      initParams = { provider: "gemini", model, apiKey };
+    }
 
     this.send({ type: "status", message: "Initialising..." });
-    await this.bridge.call("init", { provider: "gemini", model: "gemini-2.5-flash-lite", apiKey });
+    await this.bridge.call("init", initParams);
 
     this.send({ type: "status", message: `Loading ${path.basename(filePath)}...` });
     const { schema, shape } = await this.bridge.call<{
