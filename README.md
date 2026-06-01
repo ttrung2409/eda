@@ -24,6 +24,18 @@ cp .env.sample .env
 
 Edit `.env` and fill in the required variables:
 
+```
+# "gemini" or "ollama"
+LLM_PROVIDER=
+
+# Gemini (required when LLM_PROVIDER=gemini)
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-2.5-flash-lite
+
+# Ollama (required when LLM_PROVIDER=ollama)
+OLLAMA_MODEL=llama3.1:8b
+```
+
 A [Gemini API key](https://aistudio.google.com/app/apikey) is required when using the Gemini provider.
 
 ### 2. Frontend
@@ -39,10 +51,8 @@ yarn install
 # terminal 1 — backend (default port 3001)
 cd eda_agent && yarn server
 
-# terminal 2 — frontend (production build, default port 4173)
-cd eda_agent_notebook && yarn start
+# terminal 2 — frontend (default port 5173)
+cd eda_agent_notebook && yarn dev
 ```
-
-For frontend development with hot reload, use `yarn dev` instead of `yarn start`.
 
 Open `http://localhost:5173`, load a CSV, and start asking questions.
